@@ -147,9 +147,11 @@ function extract_model_section(file_buffer_array::Array{String,1},
     section_line_end = 1
     for (index, line) in enumerate(file_buffer_array)
 
+        
+
         if (occursin(start_section_marker, line) == true)
             section_line_start = index
-        elseif (occursin(end_section_marker, line) == true || length(line) == index)
+        elseif (occursin(end_section_marker, line) == true)
             section_line_end = index
         end
     end
@@ -158,6 +160,7 @@ function extract_model_section(file_buffer_array::Array{String,1},
         line_item = file_buffer_array[line_index]
         push!(section_buffer, line_item)
     end
+
 
     # return -
     return section_buffer

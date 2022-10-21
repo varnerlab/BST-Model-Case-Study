@@ -1,12 +1,12 @@
 // S-law model of linear pathway with feedback inhibition
 // Author: jdv27@cornell.edu
 
-#pragma::static
-E1,E2,E3
-#static::end
+//#pragma::static
+//E1,E2,E3
+//#static::end
 
 #pragma::dynamic
-X1, X2, X3, X4
+X1,X2,X3,X4
 #dynamic::end
 
 #pragma::structure
