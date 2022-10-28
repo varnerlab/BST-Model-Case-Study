@@ -4,8 +4,16 @@ function evaluate(model::Dict{String,Any};
     # get stuff from model -
     xₒ = model["initial_condition_vector"]
 
+    # build parameter vector -
+    p = Array{Any,1}(undef,5)
+    p[1] = model["α"]
+    p[2] = model["G"]
+    p[3] = model["S"]
+    p[4] = model["number_of_dynamic_states"]
+    p[5] = model["static_factors_array"]
+
     # setup the solver -
-    prob = ODEProblem(balances, xₒ, tspan, model; saveat = Δt)
+    prob = ODEProblem(balances, xₒ, tspan, p; saveat = Δt)
     soln = solve(prob)
 
     # get the results from the solver -

@@ -1,12 +1,14 @@
 function balances(dx, x, p, t)
 
-    # grab data from the p-vector
+    # grab data from the p dictionary -
     α = p[1]
     G = p[2]
     S = p[3]
-    number_of_dynamic_states = p[4]
-    static_factors_array = p[5]
-        
+    number_of_dynamic_states = p["number_of_dynamic_states"]
+    
+    # get the static factors (and thier values)
+    static_factors_array = p["static_factors_array"]
+    
     # build the "state" array (dynamic | static)
     state_array = vcat(x,static_factors_array)
 
