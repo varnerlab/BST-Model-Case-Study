@@ -6,17 +6,17 @@ E1,E2,E3
 #static::end
 
 #pragma::dynamic
-X1, X2, X3, X4
+X1, X2, X3, X4, X5
 #dynamic::end
 
 #pragma::structure
-// name,{reactants} --> {products}
+// name::{reactants} --> {products}
 // 1. name: reaction name (used in rate section)
 // 2. {reactants}: list of dynamic species acting as a reactants
 // 3. {products}: list of dynamic species acting as a reactants
-r1::X1 --> X2
-r2::X2 --> X3
-r3::X3 --> X4
+r1::{X1,X5} --> X2
+r2::{X2} --> X3
+r3::X3 --> X4}
 #structure::end
 
 #pragma::rate
