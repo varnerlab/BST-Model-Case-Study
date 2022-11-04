@@ -27,11 +27,10 @@ r4::X4 --> {}
 // name::{factor_1,factor_2,....}
 // 1: name = reaction name (must be in the #pragma::structure section)
 // 2: list of factor symbols (can be both static and dynamic, order does not matter)
+r0::{}
+r4::{X4}
 r1::{X1,X4,E1}
 r2::{X2,E2}
 r3::{X3,E3}
 r5::{X3}
-
-r0::{}
-r4::{X4}
 #rate::end

@@ -199,6 +199,7 @@ function _build_default_model_dictionary(model_buffer::Array{String,1})::Dict{St
 
     # initialize -
     model_dict = Dict{String,Any}()
+    tmp_rate_order_array = Array{String,1}()
 
     # get the sections of the model file -
     dynamic_section = extract_model_section(model_buffer, "#pragma::dynamic", "#dynamic::end")
@@ -222,9 +223,30 @@ function _build_default_model_dictionary(model_buffer::Array{String,1})::Dict{St
     structure_dict_array = parse_structure_section(structure_section)
     S = build_stoichiometric_matrix(list_of_dynamic_species, structure_dict_array)
 
-    # build rate exponent array -
+    # build the rate order array -
+    for record ∈ structure_dict_array
+        name = record["name"];
+        push!(tmp_rate_order_array, name);
+    end
+
+    # build and sort the rate dict array -
     rate_dict_array = parse_rate_section(rate_section)
-    G = build_exponent_matrix(total_species_list, rate_dict_array)
+    sorted_rate_dict_array = Array{Dict{String,Any},1}(undef, length(rate_dict_array))
+    for rate_dictionary ∈ rate_dict_array
+
+        # get the name -
+        name = rate_dictionary["name"];
+
+        # what key is this name?
+        idx_name_key = findall(x->x==name, tmp_rate_order_array)
+
+        @show (tmp_rate_order_array, name, idx_name_key)
+
+        sorted_rate_dict_array[first(idx_name_key)] = rate_dictionary;
+    end
+
+    # build rate exponent array -
+    G = build_exponent_matrix(total_species_list, sorted_rate_dict_array)
 
     # build the rate constant array -
     α = ones(length(rate_dict_array))
