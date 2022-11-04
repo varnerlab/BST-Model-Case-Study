@@ -18,7 +18,7 @@ function evaluate(model::Dict{String,Any};
 
     # get the results from the solver -
     T = soln.t
-    X = soln.u
+    tmp = soln.u
 
     # build soln array -
     number_of_time_steps = length(T)
