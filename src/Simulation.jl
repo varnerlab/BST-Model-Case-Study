@@ -33,5 +33,5 @@ function evaluate(model::Dict{String,Any};
     end
 
     # return -
-    return (T,X)
+    return (T,X, tmp)
 end
