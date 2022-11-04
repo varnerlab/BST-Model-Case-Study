@@ -2,7 +2,7 @@ function evaluate(model::Dict{String,Any};
     tspan::Tuple{Float64,Float64} = (0.0,20.0), Δt::Float64 = 0.01)
 
     # get stuff from model -
-    xₒ = model["initial_condition_vector"]
+    xₒ = model["initial_condition_array"]
 
     # build parameter vector -
     p = Array{Any,1}(undef,5)

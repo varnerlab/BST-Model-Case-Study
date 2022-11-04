@@ -52,10 +52,9 @@ function parse_structure_section(buffer::Array{String,1})::Array{Dict{String,Any
         left_phase_species_list = split(left_phrase,",")
         right_phase_species_list = split(right_phrase,",")
 
-
         # add -
         tmp_dict = Dict{String,Any}()
-        tmp_dict["id"] = name
+        tmp_dict["name"] = name
 
         # process reactants -
         for factor ∈ left_phase_species_list
@@ -237,6 +236,7 @@ function _build_default_model_dictionary(model_buffer::Array{String,1})::Dict{St
     model_dict["list_of_static_fators"] = list_of_static_species
     model_dict["total_species_list"] = total_species_list
     model_dict["static_factors_array"] = static_factors_array
+    model_dict["initial_condition_array"] = zeros(number_of_dynamic_states)
     model_dict["S"] = S
     model_dict["G"] = G
     model_dict["α"] = α
