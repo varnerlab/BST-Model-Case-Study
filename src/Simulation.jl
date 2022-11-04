@@ -20,6 +20,18 @@ function evaluate(model::Dict{String,Any};
     T = soln.t
     X = soln.u
 
+    # build soln array -
+    number_of_time_steps = length(T)
+    number_of_dynamic_states = model["number_of_dynamic_states"]
+    X = Array{Float64,2}(undef, number_of_time_steps,  number_of_dynamic_states);
+
+    for i ∈ 1:number_of_time_steps
+        soln_vector = tmp[i]
+        for j ∈ 1:number_of_dynamic_states
+            X[i,j] = soln_vector[j]
+        end
+    end
+
     # return -
     return (T,X)
 end
